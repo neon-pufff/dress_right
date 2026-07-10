@@ -77,4 +77,4 @@ def answer(data, city, occasion):
         return "Не удалось получить ответ от модели"
 
     text = candidates[0].get("message", {}).get("text", "")
-    return text.replase("*", "")
+    return text.replace("*", "")

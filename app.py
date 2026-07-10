@@ -49,6 +49,7 @@ def wardrope():
         city = request.form.get("city", "Москва").strip()
         occasion = request.form.get("occasion", "").strip()
         result = None
+
         if city != "":
             data = weather_f(city)
             result = answer(data, city, occasion)

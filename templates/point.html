@@ -1,58 +1,208 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WeatherWardrobe</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../static/style.css" rel="stylesheet" />
+    <style>
+        body {
+            background: #f5f7fa;
+            color: #1e293b;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            padding: 40px 48px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        .divider {
+            height: 1px;
+            background: #e9edf2;
+            margin: 28px 0;
+        }
+
+        .highlight {
+            background: #f0f9ff;
+            padding: 18px 22px;
+            border-radius: 10px;
+            border-left: 4px solid black;
+            margin-bottom: 24px;
+        }
+
+        .highlight strong {
+            color: black;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 16px;
+            margin: 20px 0 24px 0;
+        }
+
+        .stat-box {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0ea5e9;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 2px;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f4f9;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+            width: 28px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .feature-text strong {
+            display: block;
+            font-size: 15px;
+            color: #1e293b;
+        }
+
+        .feature-text span {
+            font-size: 14px;
+            color: #64748b;
+        }
+    </style>
 </head>
 <body>
 
+    <!-- Шапка с навигацией (взята из второго кода, с url_for) -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <nav class="flex items-center justify-between h-16 lg:h-20">
+                <div class="shrink-0">
+                    <a href="#" title="" class="flex group">
+                        <span class="text-xl font-bold tracking-widest text-gray-900 dark:text-white uppercase group-hover:text-lime-600 group-hover:dark:text-lime-400 transition-colors">dress<span class="text-lime-600 dark:text-lime-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"> right</span></span>
+                    </a>
+                </div>
 
-<header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
-  <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    <nav class="flex items-center justify-between h-16 lg:h-20">
-      <div class="shrink-0">
-        <a href="#" title="" class="flex group">
-                  <span class="text-xl font-bold tracking-widest text-gray-900 dark:text-white uppercase group-hover:text-lime-600 group-hover:dark:text-lime-400 transition-colors">dress<span class="text-lime-600 dark:text-lime-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"> right</span></span>
-</a>
-      </div>
+                <div class="hidden lg:flex lg:items-center lg:space-x-10">
+                <a href="{{ url_for('wardrope') }}" title=""
+                   class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
+                    wardrope </a>
+                <a href="{{ url_for('point') }}" title=""
+                   class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
+                    О нас </a>
 
-      <div class="hidden lg:flex lg:items-center lg:space-x-10">
-        <a href="{{ url_for('wardrope') }}" title="" class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500"> wardrope </a>
-        <a href="{{ url_for('point') }}" title="" class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500"> суть проекта </a>
-        <a href="{{ url_for('info') }}" title="" class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500"> О нас </a>
-        <a href="{{ url_for('logout') }}" title="" class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500"> Выйти </a>
+                <a href="{{ url_for('logout') }}" title=""
+                   class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
+                    Выйти </a>
 
+            </div>
 
-      </div>
+                <div class="hidden lg:flex lg:items-center lg:space-x-6">
+                    <button type="button" class="text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </button>
+                    <button type="button" class="text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </button>
+                </div>
 
-      <div class="hidden lg:flex lg:items-center lg:space-x-6">
-        <button type="button" class="text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
- fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-        </button>
-        <button type="button" class="text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200">
-            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
- fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
-        </button>
-      </div>
+                <button type="button" class="inline-flex p-2 text-black dark:text-white transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 dark:focus:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
+                    <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </nav>
+        </div>
+    </header>
 
-      <button type="button" class="inline-flex p-2 text-black dark:text-white transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 dark:focus:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
-        <svg class="block w-6 h-6" xmlns="http://www.w3.org/2000/svg"
- fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-      </button>
-    </nav>
-  </div>
-</header>
+    <!-- Основное содержимое (из первого кода, без дублирования) -->
+    <div class="container">
+        <h1>О проекте WeatherWardrobe</h1>
+        <p class="subtitle">Умный подбор одежды по погоде</p>
 
+        <div class="highlight">
+            <strong>Суть проекта:</strong> сокращаем время на выбор одежды с 10–20 минут до <strong>30 секунд</strong>.
+        </div>
 
+        <p style="margin-bottom: 8px;">
+            По нашим опросам, в среднем человек тратит <strong>12 минут в день</strong> на выбор наряда —
+            это почти <strong>73 часа в год</strong>.
+        </p>
 
-<p>Суть</p>
+        <div class="divider"></div>
+
+        <div class="stat-grid">
+            <div class="stat-box">
+                <div class="stat-number">12</div>
+                <div class="stat-label">минут в день</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">73</div>
+                <div class="stat-label">часа в год</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">30</div>
+                <div class="stat-label">секунд на подбор</div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Ключевые возможности</h2>
+
+        <ul class="feature-list">
+            <li>
+                <span class="feature-icon">🧠</span>
+                <div class="feature-text">
+                    <strong>Умный подбор образов</strong>
+                    <span>По погоде и типу активности</span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="divider"></div>
+    </div>
+
 </body>
 </html>

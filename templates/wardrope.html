@@ -197,7 +197,6 @@
             }
         }
 
-        /* Новый блок для формы внизу */
         .bottom-form {
             max-width: 500px;
             margin: 2rem auto 0;
@@ -262,20 +261,25 @@
     <p> {{ result }}</p>
 </div>
 
-<!-- Форма внизу -->
+<!-- Форма внизу с расширенным списком поводов -->
 <div class="bottom-form">
     <form method="post" action="{{ url_for('wardrope') }}">
         <div class="field-group">
             <!-- Поле ввода города -->
             <input type="text" name="city" placeholder="Введите город" required class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-lime-500 focus:ring-1 focus:ring-lime-500 outline-none">
 
-            <!-- Выбор повода -->
+            <!-- Выбор повода с расширенным списком -->
             <select name="occasion" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm focus:border-lime-500 focus:ring-1 focus:ring-lime-500 outline-none">
                 <option value="" disabled selected>Повод выхода на улицу</option>
                 <option value="свидание">❤️ Свидание</option>
                 <option value="спорт">🏃 Спорт</option>
                 <option value="прогулка">🚶 Прогулка</option>
                 <option value="театр">🎭 Театр</option>
+                <option value="работа">💼 Работа / Офис</option>
+                <option value="учёба">📚 Учёба / Университет</option>
+                <option value="вечеринка">🎉 Вечеринка / Клуб</option>
+                <option value="шопинг">🛍️ Шопинг / Покупки</option>
+                <option value="путешествие">✈️ Путешествие / Поездка</option>
             </select>
 
             <!-- Кнопка "Показать" внизу -->

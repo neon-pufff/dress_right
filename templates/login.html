@@ -1,158 +1,166 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Вход</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <style>
-    body {
-      background-color: #7ecfd1;
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh; /
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            background-color: #f4e988;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;  /
+        }
+
+       .registration-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            width: 100%;
+        }
 
 
-    .container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 15px;
+        .container {
+            background-color: #f4e988;
+            padding: 40px;
+            border-radius: 15px;
 
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-    }
-
-
-    h1 {
-      color: #2d3748;
-      margin-bottom: 25px;
-      font-size: 28px;
-    }
-    .alert {
-      padding: 12px; /* Отступы внутри */
-      border-radius: 8px; /* Скругление углов */
-      margin-bottom: 20px; /* Отступ снизу */
-      font-weight: bold; /* Жирный текст */
-    }
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
 
 
-
-
-
-
-
-
-    .form-group {
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-
-    .form-group label {
-      display: block;
-      font-weight: bold;
-      color: #4a5568;
-      margin-bottom: 5px;
-      font-size: 14px;
-    }
-
-
-    .form-group input {
-      width: 100%;
-      padding: 10px 12px;
-      border: 2px solid #e2e8f0;
-      border-radius: 8px;
-      font-size: 16px;
-
-    }
-
-
-    .form-group input:focus {
-      border-color: #7ecfd1;
-      outline: none;
-
-    }
-
-
-    .btn-register {
-      width: 100%;
-      padding: 12px;
-      background-color: #7ecfd1;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
 
 
 
-    .links {
-      margin-top: 25px;
-    }
 
 
-    .links p {
-      margin: 10px 0;
-      color: #4a5568;
-      font-size: 15px;
-    }
 
 
-    .links a {
-      color: #7ecfd1;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    </style>
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #4a5568;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+
+        .form-group input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+
+        }
+
+
+        .form-group input:focus {
+            border-color: #f4e988;
+            outline: none;
+
+        }
+
+
+        .btn-register {
+            width: 100%;
+            padding: 12px;
+            background-color: #ffb6a6;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+
+
+        .links {
+            margin-top: 25px;
+        }
+
+
+        .links p {
+            margin: 10px 0;
+            color: #4a5568;
+            font-size: 15px;
+        }
+
+
+        .links a {
+            color: #ffb6a6;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        </style>
+
 </head>
 <body>
-  <div class="container">
-    <div class="registration-container">
-      <h1>Вход в аккаунт</h1>
-      <div class="alert alert-error">{{ error }}</div>
+    <div class="container">
+        <div class="registration-container">
+            <h1>Вход в аккаунт</h1>
+            <div class="alert alert-error">{{ error }}</div>
 
 
-      <form method="post" class="registration-form">
-        <div class="form-group">
-          <label for="login">Логин</label>
-          <input
-            type="text"
-            id="login"
-            name="login"
-            placeholder="Введите ваш логин"
-            required
-            value="{{ login if login else '' }}"
-          >
+            <form method="post" class="registration-form">
+                <div class="form-group">
+                    <label for="login">Логин</label>
+                    <input
+                        type="text"
+                        id="login"
+                        name="login"
+                        placeholder="Введите ваш логин"
+                        required
+                        value="{{ login if login else '' }}"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Введите пароль"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn-register">Войти</button>
+            </form>
+
+            <div class="links">
+                <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрироваться</a></p>
+                <p><a href="{{ url_for('main') }}">← На главную</a></p>
+            </div>
         </div>
-
-        <div class="form-group">
-          <label for="password">Пароль</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Введите пароль"
-            required
-          >
-        </div>
-
-
-        <button type="submit" class="btn-register">Войти</button>
-      </form>
-
-      <div class="links">
-        <p>Нет аккаунта? <a href="{{ url_for('register') }}">Зарегистрироваться</a></p>
-        <p><a href="{{ url_for('main') }}">← На главную</a></p>
-      </div>
     </div>
-  </div>
 </body>
 </html>

@@ -1,115 +1,111 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Главная</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
 
 
-    body {
-      background-color: #7ecfd1; /* Голубой фон */
-      font-family: Arial, sans-serif; /* Шрифт */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-    }
+        body {
+            background-color: #f4e988;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
 
-    .container {
-      background-color: white;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-    }
-
-
-    h1 {
-      color: #2d3748; /* Темно-серый цвет */
-      margin-bottom: 20px; /* Отступ снизу */
-    }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
 
 
-    .alert {
-      padding: 12px; /* Отступы внутри */
-      border-radius: 8px; /* Скругление */
-      margin-bottom: 20px; /* Отступ снизу */
-      font-weight: bold; /* Жирный текст */
-    }
-
-    /* 6. Разные цвета для сообщений */
-    .alert-info {
-      background-color: #bee3f8; /* Светло-голубой */
-      color: #2a4365; /* Темно-синий */
-    }
-
-    .alert-success {
-      background-color: #c6f6d5;
-      color: #22543d;
-    }
-
-    .alert-error {
-      background-color: #fed7d7;
-      color: #9b2c2c;
-    }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
 
 
-    p {
-      font-size: 18px;
-      margin: 15px 0;
-      color: #4a5568;
-    }
+        .alert {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
 
 
-    .btn-link {
-      display: inline-block;
-      background-color: #7ecfd1;
-      color: white;
-      padding: 10px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
+        .alert-info {
+            background-color: #bee3f8;
+            color: #2a4365;
+        }
 
-    }
+        .alert-success {
+            background-color: #c6f6d5;
+            color: #22543d;
+        }
+
+        .alert-error {
+            background-color: #fed7d7;
+            color: #9b2c2c;
+        }
 
 
+        p {
+            font-size: 18px;
+            margin: 15px 0;
+            color: #4a5568;
+        }
+
+
+        .btn-link {
+            display: inline-block;
+            background-color: #ffb6a6;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+
+        }
 
 
 
-    .btn-link.logout {
-      background-color: #fc8181; /* Красный */
-    }
-
-    .btn-link.logout:hover {
-      background-color: #f56565;
-    }
 
 
-  </style>
+        .btn-link.logout {
+            background-color: #fc8181;
+        }
+
+        .btn-link.logout:hover {
+            background-color: #f56565;
+        }
+
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="registration-container">
-      <h1>Добро пожаловать!</h1>
+    <div class="container">
+        <div class="registration-container">
+            <h1>Добро пожаловать!</h1>
 
 
 
-        <div class="alert alert-{{ message_type or 'info' }}">{{ message }}</div>
 
 
 
-        <!--<p>Вы вошли как: <strong>{{ user }}</strong></p> -->
-        <!--<p><a href="{{ url_for('logout') }}" class="btn-link">Выйти</a></p>-->
+                <p><a href="{{ url_for('register') }}" class="btn-link">Регистрация</a></p>
+                <p><a href="{{ url_for('login') }}" class="btn-link">Вход</a></p>
 
-        <p><a href="{{ url_for('register') }}" class="btn-link">Регистрация</a></p>
-        <p><a href="{{ url_for('login') }}" class="btn-link">Вход</a></p>
-
+        </div>
     </div>
-  </div>
 </body>
 </html>

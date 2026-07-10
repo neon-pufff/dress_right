@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>WeatherWardrobe</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
@@ -13,13 +13,11 @@
             padding-bottom: 3rem;
         }
 
-
         .container {
             max-width: 720px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-
 
         .card {
             background: #ffffff;
@@ -34,11 +32,6 @@
         .card:hover {
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
         }
-        .flex justify-center w-full pt-4{
-        position: relative;
-        top: 10px;
-        }
-
 
         h2 {
             font-size: 1.125rem;
@@ -56,7 +49,6 @@
             color: #94a3b8;
             margin-bottom: 0.75rem;
         }
-
 
         .form-row {
             display: flex;
@@ -100,11 +92,6 @@
             cursor: pointer;
         }
 
-        .form-row select option {
-            padding: 0.5rem;
-        }
-
-
         .btn {
             padding: 0.7rem 1.75rem;
             background: #84cc16;
@@ -127,7 +114,6 @@
             transform: scale(0.97);
         }
 
-        /* ===== Сетка погоды ===== */
         .weather-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -163,7 +149,6 @@
             color: #0f172a;
         }
 
-
         .result-box {
             background: #f1f5f9;
             border-radius: 0.75rem;
@@ -178,7 +163,6 @@
         .result-box strong {
             color: #0f172a;
         }
-
 
         .empty-state {
             text-align: center;
@@ -196,27 +180,48 @@
             font-size: 0.95rem;
         }
 
-
         @media (max-width: 480px) {
             .card {
                 padding: 1.25rem;
                 border-radius: 1rem;
             }
-
             .weather-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 0.5rem;
             }
-
             .weather-item {
                 padding: 0.5rem 0.25rem;
             }
-
             .weather-item .value {
                 font-size: 0.9rem;
             }
+        }
 
-
+        /* Новый блок для формы внизу */
+        .bottom-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 1.25rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 1px solid #f1f5f9;
+        }
+        .bottom-form .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .bottom-form .field-group > * {
+            width: 100%;
+        }
+        .bottom-form .btn {
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -229,8 +234,6 @@
                             class="text-lime-600 dark:text-lime-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"> right</span></span>
                 </a>
             </div>
-
-
             <div class="hidden lg:flex lg:items-center lg:space-x-10">
                 <a href="{{ url_for('wardrope') }}" title=""
                    class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
@@ -238,72 +241,53 @@
                 <a href="{{ url_for('point') }}" title=""
                    class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
                     О нас </a>
-
                 <a href="{{ url_for('logout') }}" title=""
                    class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
                     Выйти </a>
-
             </div>
-
-            <div class="hidden lg:flex lg:items-center lg:space-x-6">
-                <button type="button"
-                        class="text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200">
-                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </button>
-                <button type="button"
-                        class="text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200">
-                    <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg"
-                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
-                    </svg>
-                </button>
-            </div>
-
-
         </nav>
     </div>
 </header>
 
-<div class="weather-item">
-<div style="text-align: center;">
-<form method="post" action="{{ url_for('wardrope') }}">
-    <input type="text" name="city" placeholder="Город" required>
-    <button type="submit" style="background-color: green;">Показать</button>
-</form>
+<!-- Блок с результатами (выше формы) -->
+<div style="text-align: center; margin-top: 2rem;">
+    <p> {{ temp }}</p>
+    <p> {{ humidity }}</p>
+    <p> {{ wind_kph }}</p>
+    <p> {{ chance_of_rain }}</p>
+    <p> {{ uv }}</p>
+    <p> {{ cloud }}</p>
+    <p> {{ vis_km }}</p>
+    <p> {{ pressure_mb }}</p>
+    <p> {{ result }}</p>
 </div>
 
+<!-- Форма внизу -->
+<div class="bottom-form">
+    <form method="post" action="{{ url_for('wardrope') }}">
+        <div class="field-group">
+            <!-- Поле ввода города -->
+            <input type="text" name="city" placeholder="Введите город" required class="w-full rounded-md border border-gray-300 px-4 py-2 text-sm focus:border-lime-500 focus:ring-1 focus:ring-lime-500 outline-none">
 
-<div class="flex justify-center w-full pt-4">
-    <label class="sr-only">Повод выхода на улицу</label>
-    <select name="occasion"
-            class="w-full max-w-xs rounded-md bg-white dark:bg-gray-900 px-3 py-2 text-sm font-semibold text-gray-900 dark:text-white shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-        <option value="" disabled selected>Повод выхода на улицу</option>
-        <option value="свидание">❤️ Свидание</option>
-        <option value="спорт">🏃 Спорт</option>
-        <option value="прогулка">🚶 Прогулка</option>
-        <option value="театр">🎭 Театр</option>
-    </select>
+            <!-- Выбор повода -->
+            <select name="occasion" class="w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-sm focus:border-lime-500 focus:ring-1 focus:ring-lime-500 outline-none">
+                <option value="" disabled selected>Повод выхода на улицу</option>
+                <option value="свидание">❤️ Свидание</option>
+                <option value="спорт">🏃 Спорт</option>
+                <option value="прогулка">🚶 Прогулка</option>
+                <option value="театр">🎭 Театр</option>
+            </select>
+
+            <!-- Кнопка "Показать" внизу -->
+            <button type="submit" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+                Показать
+            </button>
+        </div>
+    </form>
 </div>
-</div>
 
-
-<div style="text-align: center;">
-<p> {{ temp }}</p>
-<p> {{ humidity }}</p>
-<p> {{ wind_kph }}</p>
-<p> {{ chance_of_rain }}</p>
-<p> {{ uv }}</p>
-<p> {{ cloud }}</p>
-<p> {{ vis_km }}</p>
-<p> {{ pressure_mb }}</p>
-
-
-<p> {{ result }}</p>
-</div>
 </body>
 </html>

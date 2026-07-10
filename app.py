@@ -1,14 +1,8 @@
-from flask import Flask, session, render_template, request, url_for, redirect
-import os
-import  dotenv
-import secrets
-
-
+from func import *
 
 dotenv.load_dotenv()
 app = Flask(__name__)
 app.secret_key = os.getenv("secret_key")
-
 
 users = {}
 
@@ -34,6 +28,7 @@ def register():
     return render_template("register.html")
 
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -47,28 +42,46 @@ def login():
     return render_template("login.html")
 
 
-@app.route("/wardrope")
+@app.route('/wardrobe', methods=['GET', 'POST'])
 def wardrope():
     if request.method == "POST":
-        pass
+
+        city = request.form.get("city", "Москва").strip()
+        occasion = request.form.get("occasion", "").strip()
+        result = None
+        if city != "":
+            data = weather_f(city)
+            result = answer(data, city, occasion)
+            # result = [temp, humidity, wind_kph, chance_of_rain, uv, cloud, vis_km, pressure_mb]
+
+        return render_template("wardrope.html", result=result,
+                               temp=data[0],
+                               humidity=data[1],
+                               wind_kph=data[2],
+                               chance_of_rain=data[3],
+                               uv=data[4],
+                               cloud=data[5],
+                               vis_km=data[6],
+                               pressure_mb=data[7])
     return render_template("wardrope.html")
 
-@app.route("/point")
+
+@app.route("/point", methods=['GET', 'POST'])
 def point():
-    if request.method == "POST":
-        pass
     return render_template("point.html")
 
-@app.route("/info")
+
+@app.route("/info", methods=['GET', 'POST'])
 def info():
-    if request.method == "POST":
-        pass
     return render_template("info.html")
+
 
 @app.route("/logout")
 def logout():
     session.pop("user", None)
     return redirect(url_for("main"))
+
+
 
 @app.route("/", methods=["GET", "POST"])
 def main():
@@ -77,7 +90,6 @@ def main():
     if request.method == "POST":
         pass
     return render_template("main.html", user=user)
-
 
 
 if __name__ == "__main__":

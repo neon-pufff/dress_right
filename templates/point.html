@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WeatherWardrobe</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="../static/style.css" rel="stylesheet" />
+    <link href="../static/style.css" rel="stylesheet"/>
     <style>
         body {
             background: #f5f7fa;
@@ -110,17 +110,18 @@
 </head>
 <body>
 
-    <!-- Шапка с навигацией (взята из второго кода, с url_for) -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <nav class="flex items-center justify-between h-16 lg:h-20">
-                <div class="shrink-0">
-                    <a href="#" title="" class="flex group">
-                        <span class="text-xl font-bold tracking-widest text-gray-900 dark:text-white uppercase group-hover:text-lime-600 group-hover:dark:text-lime-400 transition-colors">dress<span class="text-lime-600 dark:text-lime-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"> right</span></span>
-                    </a>
-                </div>
+<!-- Шапка с навигацией (взята из второго кода, с url_for) -->
+<header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <nav class="flex items-center justify-between h-16 lg:h-20">
+            <div class="shrink-0">
+                <a href="#" title="" class="flex group">
+                    <span class="text-xl font-bold tracking-widest text-gray-900 dark:text-white uppercase group-hover:text-lime-600 group-hover:dark:text-lime-400 transition-colors">dress<span
+                            class="text-lime-600 dark:text-lime-400 group-hover:text-gray-900 dark:group-hover:text-white transition-colors"> right</span></span>
+                </a>
+            </div>
 
-                <div class="hidden lg:flex lg:items-center lg:space-x-10">
+            <div class="hidden lg:flex lg:items-center lg:space-x-10">
                 <a href="{{ url_for('wardrope') }}" title=""
                    class="text-base font-medium text-black dark:text-white hover:text-lime-600 dark:hover:text-lime-400 transition-all duration-200 focus:text-lime-600 dark:focus:text-lime-500">
                     wardrope </a>
@@ -135,59 +136,57 @@
             </div>
 
 
-
-
-            </nav>
-        </div>
-    </header>
-
-    <!-- Основное содержимое (из первого кода, без дублирования) -->
-    <div class="container">
-        <h1>О проекте WeatherWardrobe</h1>
-        <p class="subtitle">Умный подбор одежды по погоде</p>
-
-        <div class="highlight">
-            <strong>Суть проекта:</strong> сокращаем время на выбор одежды с 10–20 минут до <strong>30 секунд</strong>.
-        </div>
-
-        <p style="margin-bottom: 8px;">
-            По нашим опросам, в среднем человек тратит <strong>12 минут в день</strong> на выбор наряда —
-            это почти <strong>73 часа в год</strong>.
-        </p>
-
-        <div class="divider"></div>
-
-        <div class="stat-grid">
-            <div class="stat-box">
-                <div class="stat-number">12</div>
-                <div class="stat-label">минут в день</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number">73</div>
-                <div class="stat-label">часа в год</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-number">30</div>
-                <div class="stat-label">секунд на подбор</div>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Ключевые возможности</h2>
-
-        <ul class="feature-list">
-            <li>
-                <span class="feature-icon">🧠</span>
-                <div class="feature-text">
-                    <strong>Умный подбор образов</strong>
-                    <span>По погоде и типу активности</span>
-                </div>
-            </li>
-        </ul>
-
-        <div class="divider"></div>
+        </nav>
     </div>
+</header>
+
+<!-- Основное содержимое (из первого кода, без дублирования) -->
+<div class="container">
+    <h1>О проекте WeatherWardrobe</h1>
+    <p class="subtitle">Умный подбор одежды по погоде</p>
+
+    <div class="highlight">
+        <strong>Суть проекта:</strong> сокращаем время на выбор одежды с 10–20 минут до <strong>30 секунд</strong>.
+    </div>
+
+    <p style="margin-bottom: 8px;">
+        По нашим опросам, в среднем человек тратит <strong>12 минут в день</strong> на выбор наряда —
+        это почти <strong>73 часа в год</strong>.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="stat-grid">
+        <div class="stat-box">
+            <div class="stat-number">12</div>
+            <div class="stat-label">минут в день</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">73</div>
+            <div class="stat-label">часа в год</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">30</div>
+            <div class="stat-label">секунд на подбор</div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 12px;">Ключевые возможности</h2>
+
+    <ul class="feature-list">
+        <li>
+            <span class="feature-icon">🧠</span>
+            <div class="feature-text">
+                <strong>Умный подбор образов</strong>
+                <span>По погоде и типу активности</span>
+            </div>
+        </li>
+    </ul>
+
+    <div class="divider"></div>
+</div>
 
 </body>
 </html>

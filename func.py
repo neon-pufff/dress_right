@@ -1,11 +1,9 @@
 from flask import Flask, session, render_template, request, url_for, redirect
 import os
-import  dotenv
+import dotenv
 import secrets
 import requests
 import openai
-
-
 
 import os
 from dotenv import load_dotenv
@@ -13,6 +11,7 @@ import requests
 
 # Загружаем переменные из .env при старте модуля
 load_dotenv()
+
 
 def weather_f(city):
     key = os.getenv("weatherapi_key")
@@ -42,7 +41,6 @@ def weather_f(city):
 YANDEX_MODEL = "yandexgpt-lite"
 YANDEX_API_KEY = os.getenv("YANDEX_API_KEY")
 YANDEX_FOLDER_ID = os.getenv("YANDEX_FOLDER_ID")
-
 
 
 def answer(data, city, occasion):
